@@ -2,32 +2,20 @@ import globals from "globals";
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
-import pluginPrettier from "eslint-plugin-prettier"
-import prettierConfig from "eslint-config-prettier"
+import importPlugin from 'eslint-plugin-import';
 
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
+  {
+    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"]
+  },
+
   { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
+  importPlugin.flatConfigs.recommended,
+  importPlugin.flatConfigs.typescript,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
-  prettierConfig,
-  {
-    settings: {
-      react: {
-        version: 'detect' // 自动检测 React 版本
-      }
-    },
-    plugins: {
-      prettier: pluginPrettier,
-    },
-    rules: {
-      '@typescript-eslint/ban-ts-comment': 'error',
-      '@typescript-eslint/no-explicit-any': 'warn',
-      'react/react-in-jsx-scope': 'off', // 关闭需要导入 React 的规则，因为 React 17+ 不再需要
-      'react/jsx-uses-react': 'off'      // 同上
-    }
-  }
+  pluginReact.configs.flat['jsx-runtime'] // react 17 +
 ];
