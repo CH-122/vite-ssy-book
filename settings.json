@@ -1,8 +1,0 @@
-{
-  "editor.codeActionsOnSave": {
-    "source.fixAll.stylelint": true
-  },
-  "css.validate": false,
-  "stylelint.validate": ["css", "scss", "vue", "html"],
-  "editor.formatOnSave": true
-} 
