@@ -17,5 +17,22 @@ export default [
   importPlugin.flatConfigs.typescript,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
-  pluginReact.configs.flat['jsx-runtime'] // react 17 +
+  pluginReact.configs.flat['jsx-runtime'], // react 17 +
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/ban-ts-comment': 'off',
+      '@typescript-eslint/no-unused-vars': 'warn'
+    },
+    settings: {
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+          project: './tsconfig.json'
+        },
+
+      }
+    }
+  }
 ];
+
